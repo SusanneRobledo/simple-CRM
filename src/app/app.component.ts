@@ -5,8 +5,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +22,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     RouterModule,
     MatTooltipModule,
-    MatIcon,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
