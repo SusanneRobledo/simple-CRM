@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ import { Firestore } from '@angular/fire/firestore';
     MatFormFieldModule,
     FormsModule,
     MatProgressBarModule,
+    MatCardModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
