@@ -8,7 +8,7 @@
         [disabled]="loading"
         [(ngModel)]="user.firstName"
         matInput
-        placeholder="Placeholder"
+        placeholder="First Name"
       />
       <!-- <mat-hint>Please enter a name</mat-hint> -->
     </mat-form-field>
@@ -19,9 +19,21 @@
         [disabled]="loading"
         [(ngModel)]="user.lastName"
         matInput
-        placeholder="Placeholder"
+        placeholder="Last Name"
       />
       <!-- <mat-hint>Please enter a name</mat-hint> -->
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>E-Mail</mat-label>
+      <input
+        [disabled]="loading"
+        [(ngModel)]="user.email"
+        matInput
+        placeholder="E-Mail"
+      />
     </mat-form-field>
   </div>
 
@@ -50,7 +62,7 @@
         [disabled]="loading"
         [(ngModel)]="user.street"
         matInput
-        placeholder="Placeholder"
+        placeholder="Street + House No."
       />
       <!-- <mat-hint>Please enter a name</mat-hint> -->
     </mat-form-field>
@@ -63,7 +75,7 @@
         [disabled]="loading"
         [(ngModel)]="user.zipCode"
         matInput
-        placeholder="Placeholder"
+        placeholder="Zip"
       />
       <!-- <mat-hint>Please enter a name</mat-hint> -->
     </mat-form-field>
@@ -74,7 +86,7 @@
         [disabled]="loading"
         [(ngModel)]="user.city"
         matInput
-        placeholder="Placeholder"
+        placeholder="City"
       />
       <!-- <mat-hint>Please enter a name</mat-hint> -->
     </mat-form-field>
