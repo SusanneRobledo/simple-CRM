@@ -22,13 +22,14 @@ export class UserService {
     this.unsubUser = this.subUser();
   }
 
+  // write data into DB
   async addUser(item: User) {
     await addDoc(this.getUsers(), item)
       .catch((err) => {
         console.error(err);
       })
-      .then((user) => {
-        console.log('User added:', user);
+      .then((err) => {
+        console.log('Error adding user:', err);
       });
   }
 
@@ -49,6 +50,7 @@ export class UserService {
     return onSnapshot(this.getUsers(), (list) => {
       this.users = [];
       list.forEach((element) => {
+        //console.log(element.data());
         this.users.push(this.setUserObject(element.data()));
       });
     });
