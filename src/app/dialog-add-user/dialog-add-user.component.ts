@@ -72,18 +72,4 @@ export class DialogAddUserComponent {
     this.loading = false;
     this.dialogRef.close();
   }
-
-  /*  async saveUser() {
-
-  const usersCollection = collection(this.firestore, 'users'); // Get the collection reference
-    try {
-      this.loading = true;
-      const result = await addDoc(usersCollection, { ...this.user });
-      console.log('user added', result);
-      this.loading = false;
-      this.dialogRef.close();
-    } catch (error) {
-      console.error('Error adding user: ', error);
-    }
-  */
 }
