@@ -8,16 +8,7 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-
-interface Users {
-  firstName: string;
-  lastName: string;
-  email: string;
-  birthDate: number;
-  street: string;
-  zipCode: number;
-  city: string;
-}
+import { User } from '../../models/user.class';
 
 @Component({
   selector: 'app-user',
@@ -35,7 +26,7 @@ interface Users {
 })
 export class UserComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  allUsers: Users[] = [];
+  allUsers: User[] = [];
   users$: Observable<any> = new Observable();
 
   constructor(private firestore: Firestore) {}
