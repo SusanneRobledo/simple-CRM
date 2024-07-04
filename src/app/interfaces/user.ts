@@ -4,6 +4,6 @@ export interface User {
   email: string;
   birthDate: number;
   street: string;
-  zipCode: number;
+  zipCode?: number;
   city: string;
 }

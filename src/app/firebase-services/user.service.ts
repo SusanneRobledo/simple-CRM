@@ -5,6 +5,7 @@ import {
   collection,
   doc,
   onSnapshot,
+  addDoc,
 } from '@angular/fire/firestore';
 
 @Injectable({
@@ -21,6 +22,16 @@ export class UserService {
     this.unsubUser = this.subUser();
   }
 
+  async addUser(item: User) {
+    await addDoc(this.getUsers(), item)
+      .catch((err) => {
+        console.error(err);
+      })
+      .then((user) => {
+        console.log('User added:', user);
+      });
+  }
+
   setUserObject(obj: any): User {
     return {
       firstName: obj.firstName || '',
@@ -33,6 +44,7 @@ export class UserService {
     };
   }
 
+  // read data from DB
   subUser() {
     return onSnapshot(this.getUsers(), (list) => {
       this.users = [];

@@ -14,7 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { UserService } from '../firebase-services/user.service';
 import { User } from '../interfaces/user';
@@ -46,24 +45,45 @@ export class DialogAddUserComponent {
   birthDate: Date = new Date();
   loading = false;
 
+  firstName = '';
+  lastName = '';
+  email = '';
+  street = '';
+  zipCode?: number;
+  city = '';
+
   constructor(
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
-    private firestore: Firestore,
     private userService: UserService
   ) {}
 
-  /*  async saveUser() {
-    this.user.birthDate = this.birthDate.getTime();
-    console.log('current user is', this.user);
+  async addUser() {
+    let user: User = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      birthDate: this.birthDate.getTime(),
+      street: this.street,
+      zipCode: this.zipCode,
+      city: this.city,
+    };
     this.loading = true;
-    const users = collection(this.firestore, 'users'); // Get the collection reference
+    await this.userService.addUser(user);
+    this.loading = false;
+    this.dialogRef.close();
+  }
+
+  /*  async saveUser() {
+
+  const usersCollection = collection(this.firestore, 'users'); // Get the collection reference
     try {
-      const result = await addDoc(users, { ...this.user });
+      this.loading = true;
+      const result = await addDoc(usersCollection, { ...this.user });
       console.log('user added', result);
       this.loading = false;
       this.dialogRef.close();
     } catch (error) {
       console.error('Error adding user: ', error);
     }
-  }  */
+  */
 }
