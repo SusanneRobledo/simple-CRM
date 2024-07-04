@@ -1,4 +1,4 @@
-export class User {
+/* export class User {
   firstName: string;
   lastName: string;
   email: string;
@@ -17,4 +17,4 @@ export class User {
     this.zipCode = obj ? obj.zipCode : '';
     this.city = obj ? obj.city : '';
   }
-}
+} */

@@ -1,14 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { User } from '../../models/user.class';
+import { UserService } from '../firebase-services/user.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-user',
@@ -24,20 +23,13 @@ import { User } from '../../models/user.class';
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
   readonly dialog = inject(MatDialog);
-  allUsers: User[] = [];
-  users$: Observable<any> = new Observable();
 
-  constructor(private firestore: Firestore) {}
+  constructor(private userService: UserService) {}
 
-  ngOnInit(): void {
-    const usersCollection = collection(this.firestore, 'users');
-    this.users$ = collectionData(usersCollection);
-    this.users$.subscribe((changes: any) => {
-      console.log('received changes from DB', changes);
-      this.allUsers = changes;
-    });
+  getUsers(): User[] {
+    return this.userService.users;
   }
 
   openDialog() {

@@ -13,10 +13,11 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { MatProgressBar } from '@angular/material/progress-bar';
+import { UserService } from '../firebase-services/user.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -42,16 +43,16 @@ import { MatProgressBar } from '@angular/material/progress-bar';
   styleUrl: './dialog-add-user.component.scss',
 })
 export class DialogAddUserComponent {
-  user = new User();
   birthDate: Date = new Date();
   loading = false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private userService: UserService
   ) {}
 
-  async saveUser() {
+  /*  async saveUser() {
     this.user.birthDate = this.birthDate.getTime();
     console.log('current user is', this.user);
     this.loading = true;
@@ -64,5 +65,5 @@ export class DialogAddUserComponent {
     } catch (error) {
       console.error('Error adding user: ', error);
     }
-  }
+  }  */
 }
