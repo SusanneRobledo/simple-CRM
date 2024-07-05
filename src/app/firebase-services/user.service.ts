@@ -85,8 +85,6 @@ export class UserService {
       if (doc.exists()) {
         const userData = doc.data();
         callback(this.setUserObject(userData, doc.id));
-      } else {
-        console.log('No such document!');
       }
     });
   }
