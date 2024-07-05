@@ -28,13 +28,14 @@ export class UserService {
       .catch((err) => {
         console.error(err);
       })
-      .then((err) => {
-        console.log('Error adding user:', err);
+      .then((docRef) => {
+        console.log('Document written with ID:', docRef);
       });
   }
 
-  setUserObject(obj: any): User {
+  setUserObject(obj: any, id: string): User {
     return {
+      id: id || '',
       firstName: obj.firstName || '',
       lastName: obj.lastName || '',
       email: obj.email || '',
@@ -49,9 +50,9 @@ export class UserService {
   subUser() {
     return onSnapshot(this.getUsers(), (list) => {
       this.users = [];
-      list.forEach((element) => {
-        //console.log(element.data());
-        this.users.push(this.setUserObject(element.data()));
+      list.forEach((user) => {
+        console.log(this.setUserObject(user.data(), user.id));
+        this.users.push(this.setUserObject(user.data(), user.id));
       });
     });
   }
