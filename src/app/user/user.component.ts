@@ -8,6 +8,7 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../firebase-services/user.service';
 import { User } from '../interfaces/user';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,6 +20,7 @@ import { User } from '../interfaces/user';
     MatCardContent,
     MatCard,
     CommonModule,
+    RouterModule,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
