@@ -6,6 +6,7 @@ import {
   doc,
   onSnapshot,
   addDoc,
+  updateDoc,
 } from '@angular/fire/firestore';
 
 @Injectable({
@@ -20,6 +21,27 @@ export class UserService {
 
   constructor() {
     this.unsubUser = this.subUser();
+  }
+
+  async updateUser(user: User) {
+    if (user.id) {
+      let userRef = this.getSingleUser(user.id);
+      await updateDoc(userRef, this.getCleanJson(user)).catch((err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  getCleanJson(user: User): {} {
+    return {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      birthDate: user.birthDate,
+      street: user.street,
+      zipCode: user.zipCode,
+      city: user.city,
+    };
   }
 
   // write data into DB
@@ -65,7 +87,7 @@ export class UserService {
     return collection(this.firestore, 'users');
   }
 
-  getUserId(docId: string) {
+  getSingleUser(docId: string) {
     return doc(collection(this.firestore, 'users'), docId);
   }
 }
