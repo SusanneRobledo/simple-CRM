@@ -20,7 +20,6 @@ import { Firestore, onSnapshot } from '@angular/fire/firestore';
 })
 export class UserDetailComponent implements OnInit {
   userId: any = '';
-
   user: any = {};
 
   firestore: Firestore = inject(Firestore);
@@ -33,7 +32,6 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
     console.log('id =', this.userId);
-
     this.subSingleUser();
   }
 
