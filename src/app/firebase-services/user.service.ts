@@ -73,28 +73,10 @@ export class UserService {
     return onSnapshot(this.getUsers(), (list) => {
       this.users = [];
       list.forEach((user) => {
-        //console.log(this.setUserObject(user.data(), user.id));
         this.users.push(this.setUserObject(user.data(), user.id));
       });
     });
   }
-
-  subSingleUser(userId: string, callback: (user: User) => void): () => void {
-    const userDocRef = this.getSingleUser(userId);
-    return onSnapshot(userDocRef, (doc) => {
-      if (doc.exists()) {
-        const userData = doc.data();
-        callback(this.setUserObject(userData, doc.id));
-      }
-    });
-  }
-
-  /* subSingleUser() {
-    return onSnapshot(this.getSingleUser(userId)), ((user) => {
-      this.user = User(user.data())
-      console.log('current user', this.user);
-    })
-  } */
 
   ngOnDestroy() {
     this.unsubUser();

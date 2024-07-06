@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   MatCard,
   MatCardContent,
@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../firebase-services/user.service';
 import { CommonModule } from '@angular/common';
+import { Firestore, onSnapshot } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-user-detail',
@@ -17,10 +18,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss',
 })
-export class UserDetailComponent implements OnInit, OnDestroy {
+export class UserDetailComponent implements OnInit {
   userId: any = '';
-  user: User | null = null;
-  unsubscribe: any;
+
+  user: any = {};
+
+  firestore: Firestore = inject(Firestore);
 
   constructor(
     private route: ActivatedRoute,
@@ -31,15 +34,12 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.userId = this.route.snapshot.params['id'];
     console.log('id =', this.userId);
 
-    this.unsubscribe = this.userService.subSingleUser(this.userId, (user) => {
-      this.user = user;
-    });
-    //this.userService.getSingleUser(this.userId);
+    this.subSingleUser();
   }
 
-  ngOnDestroy(): void {
-    if (this.unsubscribe) {
-      this.unsubscribe();
-    }
+  subSingleUser() {
+    onSnapshot(this.userService.getSingleUser(this.userId), (user) => {
+      this.user = user.data();
+    });
   }
 }
