@@ -14,7 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -33,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     MatProgressBarModule,
     MatCardModule,
+    MatMenuModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
