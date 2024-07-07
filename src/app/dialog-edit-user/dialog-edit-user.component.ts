@@ -8,6 +8,7 @@ import {
 } from '@angular/material/datepicker';
 import {
   MatDialogActions,
+  MatDialogClose,
   MatDialogContent,
   MatDialogRef,
 } from '@angular/material/dialog';
@@ -34,6 +35,7 @@ import { MatInput } from '@angular/material/input';
     MatDialogActions,
     MatButton,
     FormsModule,
+    MatDialogClose,
   ],
   templateUrl: './dialog-edit-user.component.html',
   styleUrl: './dialog-edit-user.component.scss',

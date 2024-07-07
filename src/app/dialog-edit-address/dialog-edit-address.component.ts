@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatDialogActions,
+  MatDialogClose,
   MatDialogContent,
   MatDialogRef,
 } from '@angular/material/dialog';
@@ -26,6 +27,7 @@ import { MatInput } from '@angular/material/input';
     MatLabel,
     MatDialogActions,
     FormsModule,
+    MatDialogClose,
   ],
   templateUrl: './dialog-edit-address.component.html',
   styleUrl: './dialog-edit-address.component.scss',
