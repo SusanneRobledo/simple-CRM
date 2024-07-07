@@ -32,11 +32,8 @@ import { MatInput } from '@angular/material/input';
 })
 export class DialogEditAddressComponent {
   user!: User;
-  loading = false;
 
-  /*   street!: string;
-  zipCode!: number;
-  city!: string; */
+  loading = false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogEditAddressComponent>,

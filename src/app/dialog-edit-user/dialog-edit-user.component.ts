@@ -40,12 +40,8 @@ import { MatInput } from '@angular/material/input';
 })
 export class DialogEditUserComponent {
   user!: User;
+  //birthDate: Date;
   loading = false;
-
-  /* birthDate!: Date;
-  firstName = '';
-  lastName = '';
-  email = ''; */
 
   constructor(
     public dialogRef: MatDialogRef<DialogEditUserComponent>,

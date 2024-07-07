@@ -6,7 +6,7 @@
       <mat-label>First Name</mat-label>
       <input
         [disabled]="loading"
-        [(ngModel)]="firstName"
+        [(ngModel)]="user.firstName"
         matInput
         placeholder="First Name"
       />
@@ -17,7 +17,7 @@
       <mat-label>Last Name</mat-label>
       <input
         [disabled]="loading"
-        [(ngModel)]="lastName"
+        [(ngModel)]="user.lastName"
         matInput
         placeholder="Last Name"
       />
@@ -30,7 +30,7 @@
       <mat-label>E-Mail</mat-label>
       <input
         [disabled]="loading"
-        [(ngModel)]="email"
+        [(ngModel)]="user.email"
         matInput
         placeholder="E-Mail"
       />
@@ -42,7 +42,7 @@
       <mat-label>Birth Date</mat-label>
       <input
         [disabled]="loading"
-        [(ngModel)]="birthDate"
+        [(ngModel)]="user.birthDate"
         matInput
         [matDatepicker]="picker"
       />

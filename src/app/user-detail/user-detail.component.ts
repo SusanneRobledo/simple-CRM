@@ -37,7 +37,15 @@ import { User } from '../interfaces/user';
 })
 export class UserDetailComponent implements OnInit {
   userId: any = '';
-  user!: User;
+  user: User = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    birthDate: 0,
+    street: '',
+    zipCode: 12345,
+    city: '',
+  };
 
   readonly dialog = inject(MatDialog);
   firestore: Firestore = inject(Firestore);
@@ -61,11 +69,11 @@ export class UserDetailComponent implements OnInit {
 
   editUserDetails() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = { ...this.user }; //copy of the User Object
   }
 
   editAddress() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = { ...this.user };
   }
 }
