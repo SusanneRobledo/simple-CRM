@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 })
 export class UserComponent {
   readonly dialog = inject(MatDialog);
+  user!: User;
 
   constructor(private userService: UserService) {}
 
@@ -35,6 +36,7 @@ export class UserComponent {
   }
 
   openDialog() {
-    this.dialog.open(DialogAddUserComponent);
+    const dialog = this.dialog.open(DialogAddUserComponent);
+    dialog.componentInstance.user = this.user;
   }
 }

@@ -15,6 +15,7 @@ import { inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -34,6 +35,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    MatDatepickerModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

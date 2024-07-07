@@ -15,6 +15,7 @@ import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-user-detail',
@@ -36,7 +37,7 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
 })
 export class UserDetailComponent implements OnInit {
   userId: any = '';
-  user: any = {};
+  user!: User;
 
   readonly dialog = inject(MatDialog);
   firestore: Firestore = inject(Firestore);
@@ -54,15 +55,17 @@ export class UserDetailComponent implements OnInit {
 
   subSingleUser() {
     onSnapshot(this.userService.getSingleUser(this.userId), (user) => {
-      this.user = user.data();
+      this.user = user.data() as User;
     });
   }
 
   editUserDetails() {
-    this.dialog.open(DialogEditUserComponent);
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = this.user;
   }
 
   editAddress() {
-    this.dialog.open(DialogEditAddressComponent);
+    const dialog = this.dialog.open(DialogEditAddressComponent);
+    dialog.componentInstance.user = this.user;
   }
 }

@@ -44,13 +44,14 @@ import { User } from '../interfaces/user';
 export class DialogAddUserComponent {
   birthDate: Date = new Date();
   loading = false;
+  user!: User;
 
-  firstName = '';
-  lastName = '';
-  email = '';
-  street = '';
-  zipCode?: number;
-  city = '';
+  firstName!: string;
+  lastName!: string;
+  email!: string;
+  street!: string;
+  zipCode!: number;
+  city!: string;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
