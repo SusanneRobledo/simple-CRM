@@ -34,7 +34,7 @@ import { MatInput } from '@angular/material/input';
 })
 export class DialogEditAddressComponent {
   user!: User;
-
+  userId!: string;
   loading = false;
 
   constructor(
@@ -42,5 +42,10 @@ export class DialogEditAddressComponent {
     private userService: UserService
   ) {}
 
-  addUser() {}
+  async saveChanges() {
+    this.loading = true;
+    await this.userService.updateUser(this.user, this.userId);
+    this.loading = false;
+    this.dialogRef.close();
+  }
 }

@@ -14,7 +14,7 @@ import {
 })
 export class UserService {
   users: User[] = [];
-
+  userId: string | undefined;
   unsubUser;
 
   firestore: Firestore = inject(Firestore);
@@ -23,9 +23,9 @@ export class UserService {
     this.unsubUser = this.subUser();
   }
 
-  async updateUser(user: User) {
-    if (user.id) {
-      let userRef = this.getSingleUser(user.id);
+  async updateUser(user: User, userId: string) {
+    if (userId) {
+      let userRef = this.getSingleUser(userId);
       await updateDoc(userRef, this.getCleanJson(user)).catch((err) => {
         console.log(err);
       });

@@ -59,7 +59,12 @@
   <button [disabled]="loading" class="ml-8" mat-button mat-dialog-close>
     Cancel
   </button>
-  <button [disabled]="loading" mat-button (click)="editUser()" cdkFocusInitial>
+  <button
+    [disabled]="loading"
+    mat-button
+    (click)="saveChanges()"
+    cdkFocusInitial
+  >
     Save
   </button>
 </mat-dialog-actions>

@@ -42,6 +42,7 @@ import { MatInput } from '@angular/material/input';
 })
 export class DialogEditUserComponent {
   user!: User;
+  userId!: string;
   //birthDate: Date;
   loading = false;
 
@@ -50,5 +51,10 @@ export class DialogEditUserComponent {
     private userService: UserService
   ) {}
 
-  editUser() {}
+  async saveChanges() {
+    this.loading = true;
+    await this.userService.updateUser(this.user, this.userId);
+    this.loading = false;
+    this.dialogRef.close();
+  }
 }

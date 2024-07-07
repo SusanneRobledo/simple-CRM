@@ -70,10 +70,12 @@ export class UserDetailComponent implements OnInit {
   editUserDetails() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = { ...this.user }; //copy of the User Object
+    dialog.componentInstance.userId = this.userId;
   }
 
   editAddress() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = { ...this.user };
+    dialog.componentInstance.userId = this.userId;
   }
 }
