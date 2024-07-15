@@ -44,3 +44,7 @@ export class AppComponent {
   title = 'simple-crm';
   firestore: Firestore = inject(Firestore);
 }
+
+export function sum(a: number, b: number): number {
+  return a + b;
+}

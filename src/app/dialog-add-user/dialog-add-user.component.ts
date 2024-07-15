@@ -8,7 +8,6 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,10 +27,7 @@ import { User } from '../interfaces/user';
     MatDialogTitle,
     MatButton,
     MatDialogClose,
-    MatFormField,
-    MatLabel,
     MatIcon,
-    MatHint,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,

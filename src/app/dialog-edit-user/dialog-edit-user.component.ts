@@ -1,41 +1,27 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButton } from '@angular/material/button';
-import {
-  MatDatepicker,
-  MatDatepickerModule,
-  MatDatepickerToggle,
-} from '@angular/material/datepicker';
-import {
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { User } from '../interfaces/user';
 import { UserService } from '../firebase-services/user.service';
 import { FormsModule } from '@angular/forms';
-import { MatInput } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-dialog-edit-user',
   standalone: true,
   imports: [
     CommonModule,
-    MatProgressBar,
-    MatDialogContent,
-    MatFormField,
-    MatLabel,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatFormFieldModule,
     MatDatepickerModule,
-    MatDatepicker,
-    MatInput,
-    MatDatepickerToggle,
-    MatDialogActions,
-    MatButton,
+    MatInputModule,
+    MatButtonModule,
     FormsModule,
-    MatDialogClose,
   ],
   templateUrl: './dialog-edit-user.component.html',
   styleUrl: './dialog-edit-user.component.scss',
@@ -43,7 +29,6 @@ import { MatInput } from '@angular/material/input';
 export class DialogEditUserComponent {
   user!: User;
   userId!: string;
-  //birthDate: Date;
   loading = false;
 
   constructor(
