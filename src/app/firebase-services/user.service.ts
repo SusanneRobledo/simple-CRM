@@ -8,19 +8,28 @@ import {
   addDoc,
   updateDoc,
 } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   users: User[] = [];
+  singleUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
+    null
+  );
   userId: string | undefined;
+
   unsubUser;
 
   firestore: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubUser = this.subUser();
+  }
+
+  ngOnDestroy() {
+    this.unsubUser();
   }
 
   async updateUser(user: User, userId: string) {
@@ -34,6 +43,7 @@ export class UserService {
 
   getCleanJson(user: User): {} {
     return {
+      id: user.id ? user.id : '',
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -78,8 +88,12 @@ export class UserService {
     });
   }
 
-  ngOnDestroy() {
-    this.unsubUser();
+  // read data from DB
+  subSingleUser(userId: string) {
+    return onSnapshot(this.getSingleUser(userId), (user) => {
+      this.singleUser.next(this.setUserObject(user.data(), user.id));
+      console.log('singleUser: ', this.singleUser);
+    });
   }
 
   getUsers() {
@@ -87,6 +101,6 @@ export class UserService {
   }
 
   getSingleUser(userId: string) {
-    return doc(collection(this.firestore, 'users'), userId);
+    return doc(this.getUsers(), userId);
   }
 }
