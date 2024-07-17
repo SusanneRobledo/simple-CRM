@@ -1,31 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DialogEditAddressComponent } from './dialog-edit-address.component';
-import { environment } from '../../environments/environment';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import {
-  provideFirestore,
-  getFirestore,
-  FirestoreModule,
-} from '@angular/fire/firestore';
-import { CommonModule } from '@angular/common';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-
-const mockDialogRef = {
-  close: jasmine.createSpy('close'),
-};
-
-const firestoreMock = {
-  collection: (name: string) => ({
-    valueChanges: () =>
-      jasmine.createSpy('valueChanges').and.returnValue(Promise.resolve([])),
-    doc: () => ({
-      valueChanges: () =>
-        jasmine.createSpy('valueChanges').and.returnValue(Promise.resolve({})),
-      set: jasmine.createSpy('set').and.returnValue(Promise.resolve()),
-    }),
-  }),
-};
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { UserService } from '../firebase-services/user.service';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DialogEditAddressComponent', () => {
   let component: DialogEditAddressComponent;
@@ -35,13 +15,15 @@ describe('DialogEditAddressComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         DialogEditAddressComponent,
-        CommonModule,
-        FirestoreModule,
         MatDialogModule,
-        provideFirestore(() => getFirestore()),
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        NoopAnimationsModule,
       ],
-      providers: [{ provide: MatDialogRef, useValue: mockDialogRef }],
+      providers: [
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        UserService,
+        { provide: MatDialogRef, useValue: {} },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DialogEditAddressComponent);

@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DialogEditUserComponent } from './dialog-edit-user.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../../environments/environment';
-
-const mockDialogRef = {
-  close: jasmine.createSpy('close'),
-};
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { UserService } from '../firebase-services/user.service';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DialogEditUserComponent', () => {
   let component: DialogEditUserComponent;
@@ -16,12 +16,18 @@ describe('DialogEditUserComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MatDialogModule,
-        FormsModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
         DialogEditUserComponent,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NoopAnimationsModule,
       ],
-      providers: [{ provide: MatDialogRef, useValue: mockDialogRef }],
+      providers: [
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        UserService,
+        { provide: MatDialogRef, useValue: {} },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DialogEditUserComponent);

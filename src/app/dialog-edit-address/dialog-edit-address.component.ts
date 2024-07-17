@@ -33,7 +33,16 @@ import { MatInput } from '@angular/material/input';
   styleUrl: './dialog-edit-address.component.scss',
 })
 export class DialogEditAddressComponent {
-  user!: User;
+  user: User = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    birthDate: 0,
+    street: '',
+    zipCode: 12345,
+    city: '',
+  };
   userId!: string;
   loading = false;
 

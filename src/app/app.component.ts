@@ -11,8 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { inject } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -42,7 +40,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 })
 export class AppComponent {
   title = 'simple-crm';
-  firestore: Firestore = inject(Firestore);
 }
 
 export function sum(a: number, b: number): number {

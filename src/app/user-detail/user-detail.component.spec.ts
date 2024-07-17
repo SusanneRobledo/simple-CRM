@@ -1,35 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Firestore } from '@angular/fire/firestore';
-import { RouterModule } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { UserDetailComponent } from './user-detail.component';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from '../../environments/environment';
-import { UserService } from '../firebase-services/user.service';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { of } from 'rxjs';
-import { CommonModule } from '@angular/common';
-
-const mockDialogRef = {
-  close: jasmine.createSpy('close'),
-};
-
-const activatedRouteMock = {
-  paramMap: of(new Map([['id', '123']])),
-};
-
-const firestoreMock = {
-  collection: (name: string) => ({
-    valueChanges: () =>
-      jasmine.createSpy('valueChanges').and.returnValue(Promise.resolve([])),
-    doc: () => ({
-      valueChanges: () =>
-        jasmine.createSpy('valueChanges').and.returnValue(Promise.resolve({})),
-      set: jasmine.createSpy('set').and.returnValue(Promise.resolve()),
-    }),
-  }),
-};
+import { UserDetailComponent } from './user-detail.component';
+import { UserService } from '../firebase-services/user.service';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { MatDialogRef } from '@angular/material/dialog';
+import { environment } from '../../environments/environment';
 
 describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
@@ -37,19 +14,21 @@ describe('UserDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        UserDetailComponent,
-        CommonModule,
-        RouterModule.forRoot([]),
-        AngularFirestoreModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-      ],
+      imports: [UserDetailComponent, RouterModule.forRoot([])],
       providers: [
-        { provide: Firestore, useValue: firestoreMock },
-        { provide: MatDialog, useValue: mockDialogRef },
-        { provide: MatDialogRef, useValue: mockDialogRef },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: UserService, useValue: { users: [] } }, // Mock your user service if needed
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        UserService,
+        { provide: MatDialogRef, useValue: {} },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              params: { id: 'testUserId' },
+            },
+            params: of({ id: 'testUserId' }),
+          },
+        },
       ],
     }).compileComponents();
 

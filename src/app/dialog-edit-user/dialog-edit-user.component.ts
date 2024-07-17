@@ -27,7 +27,16 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './dialog-edit-user.component.scss',
 })
 export class DialogEditUserComponent {
-  user!: User;
+  user: User = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    birthDate: 0,
+    street: '',
+    zipCode: 12345,
+    city: '',
+  };
   userId!: string;
   loading = false;
 
